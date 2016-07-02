@@ -26,11 +26,11 @@
 				</connection>
 			</nfe_read>
 			<nfe_setup>
-			  <setup>
-                    <module>Lema21_Nfe</module>
-                    <class>Mage_Sales_Model_Mysql4_Setup</class>
-               </setup>
-            </nfe_setup>
+				<setup>
+					<module>Lema21_Nfe</module>
+					<class>Mage_Sales_Model_Mysql4_Setup</class>
+				</setup>
+			</nfe_setup>
 		</resources>
 		<helpers>
 			<nfe>
@@ -39,33 +39,13 @@
 		</helpers>
 		<models>
 			<nfe>
-				<class>Lema21_Nfe_Model</class>                
+				<class>Lema21_Nfe_Model</class>
 			</nfe>
 		</models>
 		<blocks>
 			<nfe>
 				<class>Lema21_Nfe_Block</class>
 			</nfe>
-			<adminhtml> 
-				<rewrite> 
-					<sales_order_view>Lema21_Nfe_Block_Adminhtml_Sales_Order_View</sales_order_view>
-				</rewrite>
-				<rewrite>
-                	<sales_order_grid>Lema21_Nfe_Block_Adminhtml_Sales_Order_Grid</sales_order_grid>
-            	</rewrite>
-            	
-            	<events>
-			        <core_block_abstract_prepare_layout_before>
-			            <observers>
-			                <nfe_core_block_abstract_prepare_layout_before>
-			                    <class>nfe/observer</class>
-			                    <method>addMassAction</method>
-			                </nfe_core_block_abstract_prepare_layout_before>
-			            </observers>
-			        </core_block_abstract_prepare_layout_before>
-			    </events>
-     
-			</adminhtml>
 		</blocks>
 	</global>
 	<admin>
@@ -87,5 +67,15 @@
 				</nfe>
 			</updates>
 		</layout>
+		<events>
+			<core_block_abstract_prepare_layout_before>
+				<observers>
+					<nfe>
+						<class>nfe/observer</class>
+						<method>addMassAction</method>
+					</nfe>
+				</observers>
+			</core_block_abstract_prepare_layout_before>
+		</events>
 	</adminhtml>
 </config>

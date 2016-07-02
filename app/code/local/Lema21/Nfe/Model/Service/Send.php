@@ -4,7 +4,7 @@ class Lema21_Nfe_Model_Service_Send
     /**
      *
      * @TODO
-     * 
+     *
      * 1 - colocar lista de produtos dinamicamente - done
      * 2 - passar o bairro
      * 3 - passar o codigo da cidade
@@ -28,15 +28,15 @@ class Lema21_Nfe_Model_Service_Send
 
     public function call()
     {
-    	if( ( is_array($this->_states) && !in_array( $this->_orderModel->getState(), $this->_states)) ){
-    		return array( Lema21_Nfe_Helper_Data::ERROR_MESSAGE  => "Erro ao persistir nota {$this->_orderModel->getData('increment_id')} [Não se encontra com status liberado para emissão de Nf-e]"."<br/>" );
-    	}
-    	
+        if( ( is_array($this->_states) && !in_array( $this->_orderModel->getState(), $this->_states)) ){
+            return array( Lema21_Nfe_Helper_Data::ERROR_MESSAGE  => "Erro ao persistir nota {$this->_orderModel->getData('increment_id')} [Não se encontra com status liberado para emissão de Nf-e]"."<br/>" );
+        }
+
         $response = $this->_transformToXML()
             ->_sendData();
 
         $resultMessage = $this->_saveNfe($response);
-        return $resultMessage; 
+        return $resultMessage;
     }
 
 
@@ -60,7 +60,7 @@ class Lema21_Nfe_Model_Service_Send
     {
 
         Mage::getModel(
-            "nfe/transformToXML", 
+            "nfe/transformToXML",
             array(
                 "order" => $this->_orderModel,
                 "path"  => $this->_getPathToFileStore()
@@ -72,13 +72,13 @@ class Lema21_Nfe_Model_Service_Send
 
     /**
      * Call action of render the XML order, after send xml to bling!
-     * 
+     *
      * @return string response bling
      */
     private function _sendData()
     {
         $content = Mage::getModel(
-            "nfe/transformToXML", 
+            "nfe/transformToXML",
             array(
                 "order" => $this->_orderModel,
                 "path"  =>  $this->_getPathToFileStore()
@@ -112,7 +112,7 @@ class Lema21_Nfe_Model_Service_Send
             throw new Exception(
                 "Error in load order $this->_orderId",
                 1
-            );            
+            );
         }
     }
 

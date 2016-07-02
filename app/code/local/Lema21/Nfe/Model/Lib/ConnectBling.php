@@ -25,11 +25,11 @@ class Lema21_Nfe_Model_Lib_ConnectBling
         $ctx = stream_context_create($params);
         $fp = @fopen(self::URL_ORDER, 'rb', false, $ctx);
         if (!$fp) {
-            throw new Exception("Problema com $url");
+            throw new Exception("Problema com ".self::URL_ORDER);
         }
         $response = @stream_get_contents($fp);
         if ($response === false) {
-            throw new Exception("Problema obtendo retorno de $url");
+            throw new Exception("Problema obtendo retorno de ".self::URL_ORDER);
         }
         return $response;
     }

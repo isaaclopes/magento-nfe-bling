@@ -1,98 +1,96 @@
 <?php
-$installer = $this;
-$setup = new Mage_Eav_Model_Entity_Setup('core_setup');
-$installer->startSetup();
 
-$setup->addAttributeGroup('catalog_product', 'Default', 'Nf-e', 1000);
+$attributeGroup = 'Nf-e Bling';
 
-$options['value']['option1'][0] = 'PC';
-$options['value']['option2'][0] = 'KG';
-$options['value']['option3'][0] = 'UN';
-$setup->addAttribute(
-    'catalog_product',
-    'operation_unit',
-array(
-  'group'         => 'Nf-e',
-  'label'                   => 'Unidade',
-  'type'                       => 'varchar',
-  'input'                     => 'select',
-  'backend'                   => 'eav/entity_attribute_backend_array',
-  'frontend'                   => '',
-  'global'                    => Mage_Catalog_Model_Resource_Eav_Attribute::SCOPE_GLOBAL,
-  'visible'                 => true,
-  'required'                 => false,
-  'user_defined'             => true,
-  'unique'                => false,
-  'searchable'               => true,
-  'default'                    => '',
-  'filterable'                => false,
-  'comparable'                 => false,
-  'visible_on_front'           => true,
-  'filterable_in_search'       => false,
-  'used_in_product_listing'  => true,
-  'visible_in_advanced_search' => false,
-   'sort_order'                         => 100,
-  'position'                             => 1,
-  'apply_to'                            => array('bundle,virtual,simple,configurable'),
-                'option'                              => $options
-)
+$attributes = array(
+    'codigo_origem' => array(
+        'group'			            => $attributeGroup,
+        'input'			            => 'text',
+        'type'			            => Varien_Db_Ddl_Table::TYPE_TEXT,
+        'label'			            => 'Origem',
+        'visible'		            => true,
+        'required'		            => false,
+        'user_defined'		        => true,
+        'searchable'		        => false,
+        'filterable'		        => false,
+        'comparable'		        => false,
+        'visible_on_front'	        => false,
+        'visible_in_advanced_search'    => false,
+        'is_html_allowed_on_front'      => false,
+        'used_for_promo_rules'	        => false,
+        'global'		                => Mage_Catalog_Model_Resource_Eav_Attribute::SCOPE_GLOBAL,
+        'apply_to'		                => 'simple,grouped,configurable,bundle'
+    ),
+    'operation_name' => array(
+        'group'			            => $attributeGroup,
+        'input'			            => 'text',
+        'type'			            => Varien_Db_Ddl_Table::TYPE_TEXT,
+        'label'			            => 'Descriçao',
+        'visible'		            => true,
+        'required'		            => false,
+        'user_defined'		        => true,
+        'searchable'		        => false,
+        'filterable'		        => false,
+        'comparable'		        => false,
+        'visible_on_front'	        => false,
+        'visible_in_advanced_search'    => false,
+        'is_html_allowed_on_front'      => false,
+        'used_for_promo_rules'	        => false,
+        'global'		                => Mage_Catalog_Model_Resource_Eav_Attribute::SCOPE_GLOBAL,
+        'apply_to'		                => 'simple,grouped,configurable,bundle'
+    ),
+    'operation_unit' => array(
+        'group'			            => $attributeGroup,
+        'input'			            => 'select',
+        'type'			            => Varien_Db_Ddl_Table::TYPE_VARCHAR,
+        'note'                      => 'ex. se é "PÇ", "KG"',
+        'label'			            => 'Unidade',
+        'backend'                   => 'eav/entity_attribute_backend_array',
+        'visible'		            => true,
+        'required'		            => false,
+        'user_defined'		        => true,
+        'searchable'		        => false,
+        'filterable'		        => false,
+        'comparable'		        => false,
+        'visible_on_front'	        => false,
+        'visible_in_advanced_search'    => false,
+        'is_html_allowed_on_front'      => false,
+        'used_for_promo_rules'	        => false,
+        'global'		                => Mage_Catalog_Model_Resource_Eav_Attribute::SCOPE_GLOBAL,
+        'apply_to'		                => 'simple,grouped,configurable,bundle',
+        'option'                        => array('values' => array (0 => 'PC', 1 => 'KG', 2 => 'UN'))
+    ),
+    'codigo_ncm' => array(
+        'group'			            => $attributeGroup,
+        'input'			            => 'text',
+        'type'			            => Varien_Db_Ddl_Table::TYPE_TEXT,
+        'label'			            => 'NCM',
+        'visible'		            => true,
+        'required'		            => false,
+        'user_defined'		        => true,
+        'searchable'		        => false,
+        'filterable'		        => false,
+        'comparable'		        => false,
+        'visible_on_front'	        => false,
+        'visible_in_advanced_search'    => false,
+        'is_html_allowed_on_front'      => false,
+        'used_for_promo_rules'	        => false,
+        'global'		                => Mage_Catalog_Model_Resource_Eav_Attribute::SCOPE_GLOBAL,
+        'apply_to'		                => 'simple,grouped,configurable,bundle'
+    )
 );
 
-$setup->addAttribute('catalog_product', 'operation_name', array(
-    'group'         => 'Nf-e',
-    'input'         => 'text',
-    'type'          => 'text',
-    'label'         => 'Descricao',
-    'backend'       => '',
-    'visible'       => 1,
-    'required'      => 0,
-    'user_defined' => 1,
-    'searchable' => 0,
-    'filterable' => 0,
-    'comparable'    => 0,
-    'visible_on_front' => 0,
-    'visible_in_advanced_search'  => 0,
-    'is_html_allowed_on_front' => 0,
-    'sort_order'                         => 101,
-    'global'        => Mage_Catalog_Model_Resource_Eav_Attribute::SCOPE_GLOBAL,
-));
 
-$setup->addAttribute('catalog_product', 'codigo_ncm', array(
-    'group'         => 'Nf-e',
-    'input'         => 'text',
-    'type'          => 'text',
-    'label'         => 'NCM',
-    'backend'       => '',
-    'visible'       => 1,
-    'required'      => 0,
-    'user_defined' => 1,
-    'searchable' => 0,
-    'filterable' => 0,
-    'comparable'    => 0,
-    'visible_on_front' => 0,
-    'visible_in_advanced_search'  => 0,
-    'is_html_allowed_on_front' => 0,
-    'sort_order'                         => 102,
-    'global'        => Mage_Catalog_Model_Resource_Eav_Attribute::SCOPE_GLOBAL,
-));
+/* @var $installer Mage_Catalog_Model_Resource_Setup */
+$installer = new Mage_Catalog_Model_Resource_Setup('core_setup');
+$installer->startSetup();
 
-$setup->addAttribute('catalog_product', 'codigo_origem', array(
-    'group'         => 'Nf-e',
-    'input'         => 'text',
-    'type'          => 'text',
-    'label'         => 'Origem',
-    'backend'       => '',
-    'visible'       => 1,
-    'required'      => 0,
-    'user_defined' => 1,
-    'searchable' => 0,
-    'filterable' => 0,
-    'comparable'    => 0,
-    'visible_on_front' => 0,
-    'visible_in_advanced_search'  => 0,
-    'is_html_allowed_on_front' => 0,
-    'sort_order'                         => 103,
-    'global'        => Mage_Catalog_Model_Resource_Eav_Attribute::SCOPE_GLOBAL,
-));
+foreach($installer->getAllAttributeSetIds(Mage_Catalog_Model_Product::ENTITY) as $attributeSet) {
+    $installer->addAttributeGroup(Mage_Catalog_Model_Product::ENTITY, $attributeSet, $attributeGroup, 1000);
+}
+
+foreach($attributes as $attributeCode => $options) {
+    $installer->addAttribute(Mage_Catalog_Model_Product::ENTITY, $attributeCode, $options);
+}
 
 $installer->endSetup();
